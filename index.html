@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Especial 🥺❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .card img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            min-height: 60px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        #btn-sim {
+            background-color: #28a745;
+            color: white;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        #btn-sim:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+
+        #btn-nao {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+            transition: left 0.12s ease-out, top 0.12s ease-out;
+        }
+
+        .sucesso {
+            display: none;
+        }
+
+        .sucesso h2 {
+            color: #d63384;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .sucesso p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tela do Pedido -->
+    <div class="card" id="card-pedido">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Y2Z2R6b3YwZnd4bmFqZ3RzcGNxOHd4ZHFvZ3Z4ZzB2ODRieSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpNwSULPk77/giphy.gif" alt="Gatinho pedindo por favor">
+        <h1>Aceita namorar comigo? 🥺❤️</h1>
+        <div class="btn-group">
+            <button id="btn-sim" onclick="aceitou()">SIM!</button>
+            <button id="btn-nao">NÃO</button>
+        </div>
+    </div>
+
+    <!-- Tela de Sucesso -->
+    <div class="card sucesso" id="card-sucesso">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHdwZ203YnN4Z3Zwd3pxODRieSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="Gatinhos se abraçando">
+        <h2>Sabia que você ia aceitar! 🥰💍</h2>
+        <p>Agora não tem mais volta! ❤️</p>
+    </div>
+
+    <script>
+        const btnNao = document.getElementById('btn-nao');
+        const cardPedido = document.getElementById('card-pedido');
+        const cardSucesso = document.getElementById('card-sucesso');
+
+        function moverBotao() {
+            btnNao.style.position = 'fixed';
+
+            const margin = 30;
+            const maxX = window.innerWidth - btnNao.offsetWidth - margin;
+            const maxY = window.innerHeight - btnNao.offsetHeight - margin;
+
+            const randomX = Math.floor(Math.random() * (maxX - margin)) + margin;
+            const randomY = Math.floor(Math.random() * (maxY - margin)) + margin;
+
+            btnNao.style.left = `${randomX}px`;
+            btnNao.style.top = `${randomY}px`;
+        }
+
+        // Foge no PC ao passar o mouse
+        btnNao.addEventListener('mouseover', moverBotao);
+
+        // Foge no Celular ao tentar tocar
+        btnNao.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moverBotao();
+        });
+
+        // Ação ao clicar no SIM
+        function aceitou() {
+            cardPedido.style.display = 'none';
+            cardSucesso.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
